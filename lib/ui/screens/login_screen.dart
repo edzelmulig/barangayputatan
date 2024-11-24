@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/ui/screens/forgot_password_screen.dart';
+import 'package:myapp/ui/screens/sign_up_screen.dart';
 import 'package:myapp/ui/widgets/buttons/custom_button.dart';
 import 'package:myapp/ui/widgets/images/custom_image_display.dart';
 import 'package:myapp/ui/widgets/input_fields/custom_text_field.dart';
@@ -37,7 +39,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
     debugPrint("email: $email");
     debugPrint("password: $password");
-    
 
     // // AUTHENTICATE ADMIN ACCOUNT
     // await AuthService().signIn(
@@ -54,47 +55,58 @@ class _LoginScreenState extends State<LoginScreen> {
     final screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      body: Column(
-        children: <Widget>[
-          // App Logo
-          Center(
-            child: CustomImageDisplay(
-              imageSource: "lib/ui/assets/barangay_putatan_icon.png",
-              imageHeight: screenHeight * 0.4,
-              imageWidth: screenWidth * 0.4,
+      resizeToAvoidBottomInset: true,
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            const SizedBox(height: 15),
+            // App Logo
+            Center(
+              child: CustomImageDisplay(
+                imageSource: "lib/ui/assets/barangay_putatan_icon.png",
+                imageHeight: screenHeight * 0.4,
+                imageWidth: screenWidth * 0.4,
+              ),
             ),
-          ),
 
-          // Form
-          Form(
-            key: formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                // Email Text Field
-                _EmailTextField(
-                  controller: emailController,
-                  currentFocusNode: emailFocusNode,
-                  nextFocusNode: passwordFocusNode,
-                ),
+            // Form
+            Form(
+              key: formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  // Email Text Field
+                  _EmailTextField(
+                    controller: emailController,
+                    currentFocusNode: emailFocusNode,
+                    nextFocusNode: passwordFocusNode,
+                  ),
 
-                const SizedBox(height: 8),
+                  const SizedBox(height: 8),
 
-                // Password Text Field
-                _PasswordTextField(
-                  controller: passwordController,
-                  currentFocusNode: passwordFocusNode,
-                ),
-              ],
+                  // Password Text Field
+                  _PasswordTextField(
+                    controller: passwordController,
+                    currentFocusNode: passwordFocusNode,
+                  ),
+                ],
+              ),
             ),
-          ),
 
-          const SizedBox(height: 18),
+            const SizedBox(height: 18),
 
-          // Login Button
-          _LoginButton(onPressed: _login),
-          // Forgot Password
-        ],
+            // Login Button
+            _LoginButton(onPressed: _login),
+
+            // Forgot Password ButtoN
+            const _ForgotPasswordButton(),
+
+            const SizedBox(height: 100),
+
+            // Sign Up Button
+            const _SignUpButton(),
+          ],
+        ),
       ),
     );
   }
@@ -191,9 +203,84 @@ class _LoginButton extends StatelessWidget {
         buttonColor: const Color(0xFF002091),
         buttonHeight: 50.0,
         fontWeight: FontWeight.bold,
-        fontSize: 13,
+        fontSize: 15,
         fontColor: Colors.white,
         borderRadius: 8,
+      ),
+    );
+  }
+}
+
+class _ForgotPasswordButton extends StatelessWidget {
+  const _ForgotPasswordButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      child: TextButton(
+        style: TextButton.styleFrom(
+          textStyle: const TextStyle(fontSize: 20),
+        ),
+        onPressed: () {
+          // Navigate to forgot password page
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const ForgotPasswordScreen()),
+          );
+        },
+        child: const Text(
+          'Forgot Password?',
+          style: TextStyle(
+            fontSize: 15.0,
+            color: Colors.grey,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _SignUpButton extends StatelessWidget {
+  const _SignUpButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          const Text(
+            "Don't have an account?",
+            style: TextStyle(
+              fontSize: 15.0,
+              color: Colors.grey,
+            ),
+          ),
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: const TextStyle(fontSize: 20),
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SignUpScreen(),
+                ),
+              );
+            },
+            child: const Text(
+              "Sign Up",
+              style: TextStyle(
+                fontSize: 15.0,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF002091),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

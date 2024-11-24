@@ -66,4 +66,5 @@ class DefaultFirebaseOptions {
     projectId: 'barangayputatan-3d56b',
     storageBucket: 'barangayputatan-3d56b.firebasestorage.app',
   );
+
 }
