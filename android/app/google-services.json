@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "668732851913",
+    "project_id": "barangayputatan-3d56b",
+    "storage_bucket": "barangayputatan-3d56b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:668732851913:android:ccdb1f22f9a70cf111af18",
+        "android_client_info": {
+          "package_name": "com.barangayputatan.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJs3IXfrzwqdaiFkYTrfXjanKDj1Z1TDE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
